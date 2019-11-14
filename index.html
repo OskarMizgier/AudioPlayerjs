@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Audio Player App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="paper-full.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js'></script>
+        <link rel="stylesheet" href="index.css">
+        <script type="text/paperscript" canvas="myCanvas">
+
+            sounds = ['sounds/bubbles.mp3', 'sounds/clay.mp3', 'sounds/confetti.mp3', 'sounds/corona.mp3', 'sounds/flash-1.mp3',
+            'sounds/glimmer.mp3', 'sounds/moon.mp3', 'sounds/pinwheel.mp3', 'sounds/piston-1.mp3', 'sounds/splits.mp3', 'sounds/suspension.mp3',]
+
+          var num = Math.floor(Math.random() * 11)
+
+    
+
+            var sound1 = new Howl({
+                src: [sounds[0]]
+              });
+              var sound2 = new Howl({
+                src: [sounds[1]]
+              });
+              var sound3 = new Howl({
+                src: [sounds[2]]
+              });
+              var sound4 = new Howl({
+                src: [sounds[3]]
+              });
+              var sound5 = new Howl({
+                src: [sounds[4]]
+              });
+              var sound6 = new Howl({
+                src: [sounds[5]]
+              });
+              var sound7 = new Howl({
+                src: [sounds[6]]
+              });
+              var sound8 = new Howl({
+                src: [sounds[7]]
+              });
+              var sound9 = new Howl({
+                src: [sounds[8]]
+              });
+              var sound10 = new Howl({
+                src: [sounds[9]]
+              });
+              var sound11 = new Howl({
+                src: [sounds[10]]
+              });
+            
+              function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                  color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+              }
+
+            
+            var circles = []
+            function onKeyDown(event) {
+
+                if(event.key === 'q') {
+                    sound1.play();
+                }
+                if(event.key === 'a') {
+                    sound2.play();
+                }
+                if(event.key === 'z') {
+                    sound3.play();
+                }
+                if(event.key === 'w') {
+                    sound4.play();
+                }
+                if(event.key === 's') {
+                    sound5.play();
+                }
+                if(event.key === 'x') {
+                    sound6.play();
+                }
+                if(event.key === 'e') {
+                    sound7.play();
+                }
+                if(event.key === 'd') {
+                    sound8.play();
+                }
+                if(event.key === 'r') {
+                    sound9.play();
+                }
+                if(event.key === 'f') {
+                    sound10.play();
+                }
+                if(event.key === 'v') {
+                    sound11.play();
+                }
+
+                var maxPoint = new Point(view.size.width, view.size.height);
+                var randomPoint = Point.random();
+                var point = maxPoint * randomPoint;
+                var newCircle = new Path.Circle(point, 500)
+                newCircle.fillColor = getRandomColor()
+                circles.push(newCircle)
+
+                // When a key is pressed, set the content of the text item:
+            }
+                
+
+            function onFrame(event) {
+                for(var i = 0; i < circles.length; i++) {
+                    circles[i].fillColor.hue += 1;
+                    circles[i].scale(.9);
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Content goes here -->
+        <canvas id="myCanvas" resize></canvas>
+    </body>
+</html>
